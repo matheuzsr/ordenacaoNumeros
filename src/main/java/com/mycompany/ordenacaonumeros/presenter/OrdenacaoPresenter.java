@@ -2,12 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.ordenacaonumeros;
+package com.mycompany.ordenacaonumeros.presenter;
 
 import com.mycompany.ordenacaonumeros.model.Ordenacao;
 import com.mycompany.ordenacaonumeros.view.OrdenacaoView;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  *
@@ -18,11 +16,10 @@ public class OrdenacaoPresenter {
     private Ordenacao ordenacao;
     private OrdenacaoView ordenacaoView;
 
-    public void OrdenacaoPresenter() {
+    public OrdenacaoPresenter() {
         this.ordenacaoView = new OrdenacaoView();
+//        this.setMetodoOrdenacao();
         ordenacaoView.setVisible(true);
-
-        this.setMetodoOrdenacao();
 
     }
 //    public ElementoCollection getElementosNaoOrdenados() {
@@ -36,7 +33,13 @@ public class OrdenacaoPresenter {
 //
 
     public void setMetodoOrdenacao() {
-        this.ordenacaoView.setCmbMetodos(new ArrayList<>(Arrays.asList("sa", "asas")));
+        //    public void setCmbMetodos(ArrayList<String> metodoList) {
+//        for (String metodo : metodoList) {
+//            this.cmbMetodos.addItem(metodo);
+//        }
+//    }
+
+//        this.ordenacaoView.setCmbMetodos(new ArrayList<>(Arrays.asList("sa", "asas")));
     }
 //
 //    public void ordenar() {
