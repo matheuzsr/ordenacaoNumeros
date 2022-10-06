@@ -4,7 +4,7 @@
  */
 package com.mycompany.ordenacaonumeros.model;
 
-import com.mycompany.ordenacaonumeros.ElementoCollection;
+import com.mycompany.ordenacaonumeros.collection.ElementoCollection;
 import com.mycompany.ordenacaonumeros.enumerator.TiposOrdenacao;
 
 /**

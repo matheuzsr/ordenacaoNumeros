@@ -4,7 +4,7 @@
  */
 package com.mycompany.ordenacaonumeros.service;
 
-import com.mycompany.ordenacaonumeros.ElementoCollection;
+import com.mycompany.ordenacaonumeros.collection.ElementoCollection;
 import java.util.ArrayList;
 import java.util.Arrays;
 
