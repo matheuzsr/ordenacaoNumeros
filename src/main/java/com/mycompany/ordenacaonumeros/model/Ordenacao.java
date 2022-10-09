@@ -12,14 +12,14 @@ import com.mycompany.ordenacaonumeros.collection.ElementoCollection;
  */
 public abstract class Ordenacao {
 
-    protected String metodo;
+    protected String nomeMetodo;
 
     // TODO: Verificar com o professor como retornar o tempo da ordenacao?
     public void realizarOrdenarcao(ElementoCollection elementoCollection, Boolean direcao) {
     }
 
-    public String getMetodo() {
-        return metodo;
+    public String getNomeMetodo() {
+        return nomeMetodo;
     }
 
 }

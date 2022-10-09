@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class ElementoCollection {
 
-    private final ArrayList<Double> elementos;
+    private ArrayList<Double> elementos;
 
     public ElementoCollection(ArrayList<Double> elementos) {
         this.elementos = elementos;
@@ -22,4 +22,7 @@ public class ElementoCollection {
         return elementos;
     }
 
+    public void setElementos(ArrayList<Double> elementos) {
+        this.elementos = elementos;
+    }
 }

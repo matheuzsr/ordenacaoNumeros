@@ -4,9 +4,15 @@
  */
 package com.mycompany.ordenacaonumeros.view;
 
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JRadioButton;
+import javax.swing.JToggleButton;
+
 /**
  *
- * @author logcomex
+ * @author matheus-ufes
  */
 public class OrdenacaoView extends javax.swing.JFrame {
 
@@ -26,148 +32,172 @@ public class OrdenacaoView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cmbMetodos = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lstSemOrdenados = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lstOrdenados = new javax.swing.JList<>();
+        cmbMetodo = new javax.swing.JComboBox<>();
         rbtnCrescente = new javax.swing.JRadioButton();
         rbtnDecrescente = new javax.swing.JRadioButton();
-        txtTempo = new javax.swing.JLabel();
+        btnCarregarArquivo = new javax.swing.JToggleButton();
         lblTempo = new javax.swing.JLabel();
-        btnCarregarArquivo = new javax.swing.JButton();
-        btnOrdenar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        lstOrdenados = new javax.swing.JList<>();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        lstSemOrdem = new javax.swing.JList<>();
+        txtTempo = new javax.swing.JLabel();
+        btnOrdenar = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        cmbMetodos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jScrollPane1.setViewportView(lstSemOrdenados);
+
+        jScrollPane2.setViewportView(lstOrdenados);
 
         rbtnCrescente.setText("Crescente");
-        rbtnCrescente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtnCrescenteActionPerformed(evt);
-            }
-        });
 
         rbtnDecrescente.setText("Decrescente");
-        rbtnDecrescente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtnDecrescenteActionPerformed(evt);
-            }
-        });
 
-        txtTempo.setText("Tempo:");
+        btnCarregarArquivo.setText("Carregar arquivo");
 
         lblTempo.setText("0 ms");
 
-        btnCarregarArquivo.setText("Carregar do arquivo");
-        btnCarregarArquivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCarregarArquivoActionPerformed(evt);
-            }
-        });
+        txtTempo.setText("Tempo:");
 
         btnOrdenar.setText("Ordenar");
-
-        lstOrdenados.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(lstOrdenados);
-
-        lstSemOrdem.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(lstSemOrdem);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
                         .addComponent(btnCarregarArquivo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jScrollPane2)
-                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(cmbMetodos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(15, 15, 15))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cmbMetodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(rbtnCrescente))
+                                .addGap(33, 33, 33))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnOrdenar)
-                                .addGap(20, 20, 20))
-                            .addComponent(rbtnCrescente, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(rbtnDecrescente, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(35, 35, 35)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(49, 49, 49))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(rbtnDecrescente)
+                                .addGap(18, 18, 18)))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtTempo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblTempo)
-                        .addGap(68, 68, 68))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblTempo)))
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addContainerGap(42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(cmbMetodos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
+                        .addComponent(cmbMetodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
                         .addComponent(rbtnCrescente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rbtnDecrescente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(38, 38, 38)
                         .addComponent(btnOrdenar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtTempo)
-                            .addComponent(lblTempo))
-                        .addGap(25, 25, 25))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnCarregarArquivo)
-                        .addGap(35, 35, 35))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCarregarArquivo)
+                    .addComponent(lblTempo)
+                    .addComponent(txtTempo))
+                .addGap(23, 23, 23))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCarregarArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarregarArquivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCarregarArquivoActionPerformed
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(OrdenacaoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(OrdenacaoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(OrdenacaoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(OrdenacaoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
-    private void rbtnCrescenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnCrescenteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbtnCrescenteActionPerformed
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new OrdenacaoView().setVisible(true);
+            }
+        });
+    }
 
-    private void rbtnDecrescenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnDecrescenteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbtnDecrescenteActionPerformed
+    public JToggleButton getBtnCarregarArquivo() {
+        return btnCarregarArquivo;
+    }
+
+    public JToggleButton getBtnOrdenar() {
+        return btnOrdenar;
+    }
+
+    public JComboBox<String> getCmbMetodo() {
+        return cmbMetodo;
+    }
+
+    public JLabel getLblTempo() {
+        return lblTempo;
+    }
+
+    public JList<Double> getLstOrdenados() {
+        return lstOrdenados;
+    }
+
+    public JList<Double> getLstSemOrdenados() {
+        return lstSemOrdenados;
+    }
+
+    public JRadioButton getRbtnCrescente() {
+        return rbtnCrescente;
+    }
+
+    public JRadioButton getRbtnDecrescente() {
+        return rbtnDecrescente;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCarregarArquivo;
-    private javax.swing.JButton btnOrdenar;
-    private javax.swing.JComboBox<String> cmbMetodos;
+    private javax.swing.JToggleButton btnCarregarArquivo;
+    private javax.swing.JToggleButton btnOrdenar;
+    private javax.swing.JComboBox<String> cmbMetodo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblTempo;
-    private javax.swing.JList<String> lstOrdenados;
-    private javax.swing.JList<String> lstSemOrdem;
+    private javax.swing.JList<Double> lstOrdenados;
+    private javax.swing.JList<Double> lstSemOrdenados;
     private javax.swing.JRadioButton rbtnCrescente;
     private javax.swing.JRadioButton rbtnDecrescente;
     private javax.swing.JLabel txtTempo;

@@ -14,7 +14,7 @@ import java.util.Arrays;
  */
 public class LerElementosService {
 
-    private ElementoCollection realizarLeitura(String pathArquivo) {
+    public ElementoCollection realizarLeitura(String pathArquivo) {
         ArrayList<Double> numeros = new ArrayList<>(Arrays.asList(
                 10.0, 5.0, 6.0, 7.0, 8.0, 2.0
         ));

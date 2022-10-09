@@ -6,6 +6,7 @@ package com.mycompany.ordenacaonumeros.model;
 
 import com.mycompany.ordenacaonumeros.collection.ElementoCollection;
 import com.mycompany.ordenacaonumeros.enumerator.TiposOrdenacao;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,18 +16,34 @@ public class BubbleSortOrdenacao extends Ordenacao {
 
     public BubbleSortOrdenacao() {
         super();
-        this.metodo = TiposOrdenacao.BUBBLE_SORT.getName();
+        this.nomeMetodo = TiposOrdenacao.BUBBLE_SORT.getName();
     }
 
     @Override
     public void realizarOrdenarcao(ElementoCollection elementoCollection, Boolean direcao) {
-        System.out.println(elementoCollection);
-        System.out.println(direcao);
+        ArrayList<Double> arraySelecao = elementoCollection.getElementos();
+
+        for (int posicaoAtual = 0; posicaoAtual < arraySelecao.size(); posicaoAtual++) {
+
+            // find position of smallest num between (posicaoAtual + 1)th element and last element
+            int indexPosicao = posicaoAtual;
+            for (int posicaoAuxiliar = posicaoAtual; posicaoAuxiliar < arraySelecao.size(); posicaoAuxiliar++) {
+                if (arraySelecao.get(posicaoAuxiliar) < arraySelecao.get(indexPosicao)) {
+                    indexPosicao = posicaoAuxiliar;
+                }
+            }
+            // Swap min (smallest num) to current position on array
+            double min = arraySelecao.get(indexPosicao);
+            arraySelecao.set(indexPosicao, arraySelecao.get(posicaoAtual));
+            arraySelecao.set(posicaoAtual, min);
+        }
+
+        elementoCollection.setElementos(arraySelecao);
     }
 
     @Override
-    public String getMetodo() {
-        return this.metodo;
+    public String getNomeMetodo() {
+        return this.nomeMetodo;
     }
 
 }
