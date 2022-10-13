@@ -6,12 +6,17 @@ package com.mycompany.ordenacaonumeros.presenter;
 
 import com.mycompany.ordenacaonumeros.collection.ElementoCollection;
 import com.mycompany.ordenacaonumeros.model.Ordenacao;
-import com.mycompany.ordenacaonumeros.service.LerElementosService;
+import com.mycompany.ordenacaonumeros.service.LerSalarioFileService;
 import com.mycompany.ordenacaonumeros.view.OrdenacaoView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JList;
 
@@ -23,9 +28,9 @@ public class OrdenacaoPresenter {
 
     private OrdenacaoView view;
     private ArrayList<Ordenacao> ordenacaoCollection;
-    private LerElementosService lerElementosService;
+    private LerSalarioFileService lerElementosService;
 
-    public OrdenacaoPresenter(LerElementosService lerElementosService, ArrayList<Ordenacao> ordenacaoCollection) {
+    public OrdenacaoPresenter(LerSalarioFileService lerElementosService, ArrayList<Ordenacao> ordenacaoCollection) {
         this.lerElementosService = lerElementosService;
         this.ordenacaoCollection = ordenacaoCollection;
 
@@ -45,11 +50,6 @@ public class OrdenacaoPresenter {
         });
         JComboBox<String> cbmMetodo = view.getCmbMetodo();
 
-        /*
-         * Caso não utilizasse enum, deveria haver esse código ao invés do for abaixo
-         * cbmMetodo.addItem("selectionSort");
-         * cbmMetodo.addItem("bubbleSort");
-         */
         for (Ordenacao metodoOrdenacao : ordenacaoCollection) {
             cbmMetodo.addItem(metodoOrdenacao.getNomeMetodo());
         }
@@ -70,19 +70,24 @@ public class OrdenacaoPresenter {
     }
 
     private void carregarArquivo() {
-        ElementoCollection elementoColeCollection = lerElementosService.realizarLeitura(null);
-        JList<Double> listaSemOrdenados = view.getLstSemOrdenados();
+        ElementoCollection elementoColeCollection;
+        try {
+            elementoColeCollection = lerElementosService.realizarLeitura();
 
-        listaSemOrdenados.setListData(convertArrayListEmVector(elementoColeCollection.getElementos()));
+            JList<Double> listaSemOrdenados = view.getLstSemOrdenados();
+            listaSemOrdenados.setListData(convertArrayListEmVector(elementoColeCollection.getElementos()));
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(OrdenacaoPresenter.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
     private ElementoCollection getElementosNaoOrdenados() {
         JList<Double> ordenacaoView = view.getLstSemOrdenados();
         int sizeList = ordenacaoView.getModel().getSize();
-        // TODO: Verificar com o professor
-        // Corrigir no point exception
-        ArrayList<Double> elementosNaoOrdenados = null;
+
+        ArrayList<Double> elementosNaoOrdenados = new ArrayList<>();
 
         for (int i = 0; i < sizeList; i++) {
             Double item = ordenacaoView.getModel().getElementAt(i);
@@ -92,36 +97,37 @@ public class OrdenacaoPresenter {
         return new ElementoCollection(elementosNaoOrdenados);
     }
 
-    public void setElementosOrdenados(ElementoCollection elementoCollection) {
-        // TODO: Verificar com o professor
-        // Tem problema essa chamada encadeada(Visto que estou pegando coisas da view e
-        // não de regra de negócio)
+    private void setElementosOrdenados(ElementoCollection elementoCollection) {
         view.getLstOrdenados().setListData(convertArrayListEmVector(elementoCollection.getElementos()));
     }
 
-    public Vector<Double> convertArrayListEmVector(ArrayList<Double> arrayElementos) {
+    private Vector<Double> convertArrayListEmVector(ArrayList<Double> arrayElementos) {
         return new Vector<Double>(arrayElementos);
     }
 
-    public void ordenar() {
+    private void ordenar() {
         JComboBox<String> cbmMetodo = view.getCmbMetodo();
         String itemSelecionado = cbmMetodo.getSelectedItem().toString();
         ElementoCollection elementoCollectionOrdenacao = getElementosNaoOrdenados();
 
-        // TODO: Verificar com o professor
-        // Pró de olhar o método selecionado quando clica em ordenar
-        // Não precisa guardar a instância(que seria a opção de guardar no change do
-        // combobox)
-        // Contra: precisa percorrer todos os métodos quando for ordenar
-        // Qual melhor maneira? e Porque?
         for (Ordenacao metodoOrdenacao : ordenacaoCollection) {
             if (itemSelecionado.equals(metodoOrdenacao.getNomeMetodo())) {
-                // metodoOrdenacao.realizarOrdenarcao(elementoCollectionOrdenacao, true);
+                Instant antes = Instant.now();
+
+                metodoOrdenacao.realizarOrdenarcao(elementoCollectionOrdenacao, true);
+                Instant depois = Instant.now();
+                Duration duracao = Duration.between(antes, depois);
+                setLabelTempo(duracao.getSeconds());
 
                 setElementosOrdenados(elementoCollectionOrdenacao);
                 break;
             }
         }
 
+    }
+
+    private void setLabelTempo(long tempo) {
+        var tempoMilisegundos = tempo * 1000;
+        view.getLblTempo().setText(String.valueOf(tempoMilisegundos).concat("ms"));
     }
 }

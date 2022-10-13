@@ -1,14 +1,13 @@
 com/mycompany/ordenacaonumeros/model/SelectionSortOrdenacao.class
+com/mycompany/principal/Main.class
 com/mycompany/ordenacaonumeros/presenter/OrdenacaoPresenter$1.class
 com/mycompany/ordenacaonumeros/enumerator/TiposOrdenacao.class
+com/mycompany/ordenacaonumeros/service/LerSalarioFileService.class
 com/mycompany/ordenacaonumeros/presenter/OrdenacaoPresenter.class
-com/mycompany/ordenacaonumeros/service/LerElementosService.class
 com/mycompany/ordenacaonumeros/presenter/OrdenacaoPresenter$2.class
 com/mycompany/ordenacaonumeros/model/Ordenacao.class
-com/mycompany/ordenacaonumeros/Main.class
 com/mycompany/ordenacaonumeros/view/OrdenacaoView$1.class
 com/mycompany/ordenacaonumeros/presenter/OrdenacaoPresenter$3.class
 com/mycompany/ordenacaonumeros/view/OrdenacaoView.class
 com/mycompany/ordenacaonumeros/model/BubbleSortOrdenacao.class
-.netbeans_automatic_build
 com/mycompany/ordenacaonumeros/collection/ElementoCollection.class

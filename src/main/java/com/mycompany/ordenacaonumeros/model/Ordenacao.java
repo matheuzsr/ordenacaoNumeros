@@ -14,7 +14,6 @@ public abstract class Ordenacao {
 
     protected String nomeMetodo;
 
-    // TODO: Verificar com o professor como retornar o tempo da ordenacao?
     public void realizarOrdenarcao(ElementoCollection elementoCollection, Boolean direcao) {
     }
 

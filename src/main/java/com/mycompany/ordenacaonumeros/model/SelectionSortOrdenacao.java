@@ -25,14 +25,13 @@ public class SelectionSortOrdenacao extends Ordenacao {
 
         for (int posicaoAtual = 0; posicaoAtual < arraySelecao.size(); posicaoAtual++) {
 
-            // find position of smallest num between (posicaoAtual + 1)th element and last element
             int indexPosicao = posicaoAtual;
             for (int posicaoAuxiliar = posicaoAtual; posicaoAuxiliar < arraySelecao.size(); posicaoAuxiliar++) {
                 if (arraySelecao.get(posicaoAuxiliar) < arraySelecao.get(indexPosicao)) {
                     indexPosicao = posicaoAuxiliar;
                 }
             }
-            // Swap min (smallest num) to current position on array
+
             double min = arraySelecao.get(indexPosicao);
             arraySelecao.set(indexPosicao, arraySelecao.get(posicaoAtual));
             arraySelecao.set(posicaoAtual, min);
