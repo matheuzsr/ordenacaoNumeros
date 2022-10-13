@@ -5,7 +5,6 @@
 package com.mycompany.ordenacaonumeros.model;
 
 import com.mycompany.ordenacaonumeros.collection.ElementoCollection;
-import com.mycompany.ordenacaonumeros.enumerator.TiposOrdenacao;
 import java.util.ArrayList;
 
 /**
@@ -16,7 +15,7 @@ public class SelectionSortOrdenacao extends Ordenacao {
 
     public SelectionSortOrdenacao() {
         super();
-        this.nomeMetodo = TiposOrdenacao.SELECTION_SORT.getName();
+        this.nomeMetodo = "SelectionSort";
     }
 
     @Override

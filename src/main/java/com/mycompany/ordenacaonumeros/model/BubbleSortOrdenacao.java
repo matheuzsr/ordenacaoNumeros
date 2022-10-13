@@ -5,7 +5,6 @@
 package com.mycompany.ordenacaonumeros.model;
 
 import com.mycompany.ordenacaonumeros.collection.ElementoCollection;
-import com.mycompany.ordenacaonumeros.enumerator.TiposOrdenacao;
 import java.util.ArrayList;
 
 /**
@@ -16,7 +15,7 @@ public class BubbleSortOrdenacao extends Ordenacao {
 
     public BubbleSortOrdenacao() {
         super();
-        this.nomeMetodo = TiposOrdenacao.BUBBLE_SORT.getName();
+        this.nomeMetodo = "BubbleSort";
     }
 
     @Override
