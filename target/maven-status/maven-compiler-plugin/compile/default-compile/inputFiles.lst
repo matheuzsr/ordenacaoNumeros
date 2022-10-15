@@ -2,7 +2,6 @@
 /home/logcomex/projects/zprojetos-software/ordenacaoNumeros/src/main/java/com/mycompany/ordenacaonumeros/collection/ElementoCollection.java
 /home/logcomex/projects/zprojetos-software/ordenacaoNumeros/src/main/java/com/mycompany/ordenacaonumeros/model/SelectionSortOrdenacao.java
 /home/logcomex/projects/zprojetos-software/ordenacaoNumeros/src/main/java/com/mycompany/ordenacaonumeros/view/OrdenacaoView.java
-/home/logcomex/projects/zprojetos-software/ordenacaoNumeros/src/main/java/com/mycompany/ordenacaonumeros/enumerator/TiposOrdenacao.java
 /home/logcomex/projects/zprojetos-software/ordenacaoNumeros/src/main/java/com/mycompany/ordenacaonumeros/presenter/OrdenacaoPresenter.java
 /home/logcomex/projects/zprojetos-software/ordenacaoNumeros/src/main/java/com/mycompany/ordenacaonumeros/model/BubbleSortOrdenacao.java
 /home/logcomex/projects/zprojetos-software/ordenacaoNumeros/src/main/java/com/mycompany/ordenacaonumeros/service/LerSalarioFileService.java

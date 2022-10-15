@@ -11,8 +11,6 @@ import com.mycompany.ordenacaonumeros.view.OrdenacaoView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
-import java.time.Duration;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -35,38 +33,38 @@ public class OrdenacaoPresenter {
         this.ordenacaoCollection = ordenacaoCollection;
 
         this.view = new OrdenacaoView();
-        initListeners();
-        view.setVisible(true);
+        this.initConfiguracaoView();
+        this.initListeners();
+        this.view.setVisible(true);
 
     }
 
     private void initListeners() {
-        view.getBtnCarregarArquivo().addActionListener(new ActionListener() {
+        this.view.getBtnCarregarArquivo().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 carregarArquivo();
-
             }
         });
-        JComboBox<String> cbmMetodo = view.getCmbMetodo();
-
-        for (Ordenacao metodoOrdenacao : ordenacaoCollection) {
-            cbmMetodo.addItem(metodoOrdenacao.getNomeMetodo());
-        }
-        cbmMetodo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                carregarArquivo();
-
-            }
-        });
-        view.getBtnOrdenar().addActionListener(new ActionListener() {
+        this.view.getBtnOrdenar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 ordenar();
-
             }
         });
+
+        this.view.getLstSemOrdenar().addPropertyChangeListener(e -> this.handleEnableButtonOrdenacao());
+    }
+
+    private void initConfiguracaoView() {
+        this.view.getGrpOrdem().add(this.view.getRbtnCrescente());
+        this.view.getGrpOrdem().add(this.view.getRbtnDecrescente());
+        this.view.getRbtnCrescente().setSelected(true);
+
+        this.view.getBtnOrdenar().setEnabled(false);
+        for (Ordenacao metodoOrdenacao : ordenacaoCollection) {
+            this.view.getCmbMetodo().addItem(metodoOrdenacao.getNomeMetodo());
+        }
     }
 
     private void carregarArquivo() {
@@ -74,17 +72,16 @@ public class OrdenacaoPresenter {
         try {
             elementoColeCollection = lerElementosService.realizarLeitura();
 
-            JList<Double> listaSemOrdenados = view.getLstSemOrdenados();
+            JList<Double> listaSemOrdenados = this.view.getLstSemOrdenar();
             listaSemOrdenados.setListData(convertArrayListEmVector(elementoColeCollection.getElementos()));
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(OrdenacaoPresenter.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     private ElementoCollection getElementosNaoOrdenados() {
-        JList<Double> ordenacaoView = view.getLstSemOrdenados();
+        JList<Double> ordenacaoView = this.view.getLstSemOrdenar();
         int sizeList = ordenacaoView.getModel().getSize();
 
         ArrayList<Double> elementosNaoOrdenados = new ArrayList<>();
@@ -98,7 +95,7 @@ public class OrdenacaoPresenter {
     }
 
     private void setElementosOrdenados(ElementoCollection elementoCollection) {
-        view.getLstOrdenados().setListData(convertArrayListEmVector(elementoCollection.getElementos()));
+        this.view.getLstOrdenados().setListData(convertArrayListEmVector(elementoCollection.getElementos()));
     }
 
     private Vector<Double> convertArrayListEmVector(ArrayList<Double> arrayElementos) {
@@ -106,28 +103,36 @@ public class OrdenacaoPresenter {
     }
 
     private void ordenar() {
-        JComboBox<String> cbmMetodo = view.getCmbMetodo();
+        JComboBox<String> cbmMetodo = this.view.getCmbMetodo();
         String itemSelecionado = cbmMetodo.getSelectedItem().toString();
         ElementoCollection elementoCollectionOrdenacao = getElementosNaoOrdenados();
 
         for (Ordenacao metodoOrdenacao : ordenacaoCollection) {
             if (itemSelecionado.equals(metodoOrdenacao.getNomeMetodo())) {
-                Instant antes = Instant.now();
 
-                metodoOrdenacao.realizarOrdenarcao(elementoCollectionOrdenacao, true);
-                Instant depois = Instant.now();
-                Duration duracao = Duration.between(antes, depois);
-                setLabelTempo(duracao.getSeconds());
+                Boolean direcao = getDirecaoOrdenacao();
+                metodoOrdenacao.realizarOrdenarcaoWithTempo(elementoCollectionOrdenacao, direcao);
+                setLabelTempo(metodoOrdenacao.getTempoGasto());
 
                 setElementosOrdenados(elementoCollectionOrdenacao);
                 break;
             }
         }
+    }
 
+    // TODO: Talvez utilizar uma implementação onde busque o dado direto do
+    // buttonGroup
+    private Boolean getDirecaoOrdenacao() {
+        return this.view.getRbtnCrescente().isSelected();
     }
 
     private void setLabelTempo(long tempo) {
-        var tempoMilisegundos = tempo * 1000;
-        view.getLblTempo().setText(String.valueOf(tempoMilisegundos).concat("ms"));
+        this.view.getLblTempo().setText(String.valueOf(tempo).concat("ms"));
+    }
+
+    private void handleEnableButtonOrdenacao() {
+        if (this.view.getLstSemOrdenar().getModel().getSize() > 0) {
+            this.view.getBtnOrdenar().setEnabled(true);
+        }
     }
 }
