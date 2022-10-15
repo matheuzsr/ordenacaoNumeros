@@ -13,12 +13,29 @@ import com.mycompany.ordenacaonumeros.collection.ElementoCollection;
 public abstract class Ordenacao {
 
     protected String nomeMetodo;
+    private long tempoGasto;
+
+    public void realizarOrdenarcaoWithTempo(ElementoCollection elementoCollection, Boolean direcao) {
+        long inicio = System.currentTimeMillis();
+        realizarOrdenarcao(elementoCollection, direcao);
+        long fim = System.currentTimeMillis();
+        this.tempoGasto = fim - inicio;
+    }
 
     public void realizarOrdenarcao(ElementoCollection elementoCollection, Boolean direcao) {
     }
 
-    public String getNomeMetodo() {
-        return nomeMetodo;
+    protected Boolean getCondicionalByDirecao(double value1, double value2, Boolean direcao) {
+        return direcao
+                ? value1 < value2
+                : value1 > value2;
     }
 
+    public String getNomeMetodo() {
+        return this.nomeMetodo;
+    }
+
+    public long getTempoGasto() {
+        return this.tempoGasto;
+    }
 }

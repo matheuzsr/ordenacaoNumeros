@@ -22,26 +22,19 @@ public class SelectionSortOrdenacao extends Ordenacao {
     public void realizarOrdenarcao(ElementoCollection elementoCollection, Boolean direcao) {
         ArrayList<Double> arraySelecao = elementoCollection.getElementos();
 
-        for (int posicaoAtual = 0; posicaoAtual < arraySelecao.size(); posicaoAtual++) {
-
-            int indexPosicao = posicaoAtual;
-            for (int posicaoAuxiliar = posicaoAtual; posicaoAuxiliar < arraySelecao.size(); posicaoAuxiliar++) {
-                if (arraySelecao.get(posicaoAuxiliar) < arraySelecao.get(indexPosicao)) {
-                    indexPosicao = posicaoAuxiliar;
+        for (int i = 0; i < arraySelecao.size(); i++) {
+            int idAux = i;
+            for (int j = i; j < arraySelecao.size(); j++) {
+                if (getCondicionalByDirecao(arraySelecao.get(j), arraySelecao.get(idAux), direcao)) {
+                    idAux = j;
                 }
             }
 
-            double min = arraySelecao.get(indexPosicao);
-            arraySelecao.set(indexPosicao, arraySelecao.get(posicaoAtual));
-            arraySelecao.set(posicaoAtual, min);
+            double min = arraySelecao.get(idAux);
+            arraySelecao.set(idAux, arraySelecao.get(i));
+            arraySelecao.set(i, min);
         }
 
         elementoCollection.setElementos(arraySelecao);
     }
-
-    @Override
-    public String getNomeMetodo() {
-        return this.nomeMetodo;
-    }
-
 }

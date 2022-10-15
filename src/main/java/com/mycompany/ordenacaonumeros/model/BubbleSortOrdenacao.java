@@ -22,27 +22,17 @@ public class BubbleSortOrdenacao extends Ordenacao {
     public void realizarOrdenarcao(ElementoCollection elementoCollection, Boolean direcao) {
         ArrayList<Double> arraySelecao = elementoCollection.getElementos();
 
-        for (int posicaoAtual = 0; posicaoAtual < arraySelecao.size(); posicaoAtual++) {
-
-            // find position of smallest num between (posicaoAtual + 1)th element and last element
-            int indexPosicao = posicaoAtual;
-            for (int posicaoAuxiliar = posicaoAtual; posicaoAuxiliar < arraySelecao.size(); posicaoAuxiliar++) {
-                if (arraySelecao.get(posicaoAuxiliar) < arraySelecao.get(indexPosicao)) {
-                    indexPosicao = posicaoAuxiliar;
+        double aux;
+        for (int i = 0; i < arraySelecao.size(); i++) {
+            for (int j = i + 1; j < arraySelecao.size(); j++) {
+                if (getCondicionalByDirecao(arraySelecao.get(i), arraySelecao.get(j), direcao)) {
+                    aux = arraySelecao.get(j);
+                    arraySelecao.set(j, arraySelecao.get(i));
+                    arraySelecao.set(i, aux);
                 }
             }
-            // Swap min (smallest num) to current position on array
-            double min = arraySelecao.get(indexPosicao);
-            arraySelecao.set(indexPosicao, arraySelecao.get(posicaoAtual));
-            arraySelecao.set(posicaoAtual, min);
         }
 
         elementoCollection.setElementos(arraySelecao);
     }
-
-    @Override
-    public String getNomeMetodo() {
-        return this.nomeMetodo;
-    }
-
 }
